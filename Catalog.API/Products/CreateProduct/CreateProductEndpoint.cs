@@ -1,6 +1,13 @@
-using Carter;
-using Mapster;
-using MediatR;
+// Purpose: Implementation of the Create Product
+// endpoint in the Catalog.API microservice.
+// This endpoint is responsible for creating a new product in the catalog.
+// The endpoint receives a CreateProductRequest object,
+// which is mapped to a CreateProductCommand object.
+// The command is then sent to the CreateProductCommandHandler,
+// which creates a new Product object and saves it to the database.
+// The handler returns a CreateProductResult object with the ID of the newly created product.
+// The result is then mapped to a CreateProductResponse object and returned to the client
+// with a 201 Created status code.
 
 namespace Catalog.API.Products.CreateProduct;
 
