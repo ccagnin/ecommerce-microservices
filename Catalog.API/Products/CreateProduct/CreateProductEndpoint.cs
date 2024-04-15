@@ -19,18 +19,18 @@ public class CreateProductEndpoint : ICarterModule
     {
         app.MapPost("/products", async (CreateProductRequest request, ISender sender) =>
             {
-                var command = request.Adapt<CreateProductCommand>();
+                var command = request.Adapt<CreateProductCommand>(); // Map request to command
 
-                var result = await sender.Send(command);
+                var result = await sender.Send(command); // Send command to handler
 
-                var response = result.Adapt<CreateProductResponse>();
+                var response = result.Adapt<CreateProductResponse>(); // Map result to response
 
-                return Results.Created($"/products/{response.Id}", response);
+                return Results.Created($"/products/{response.Id}", response); // Return response
             })
             .WithName("CreateProduct")
             .Produces<CreateProductResponse>(StatusCodes.Status201Created)
             .ProducesProblem(StatusCodes.Status400BadRequest)
             .WithSummary("Create Product")
-            .WithDescription("Create Product");
+            .WithDescription("Create Product"); // Add metadata
     }
 }
