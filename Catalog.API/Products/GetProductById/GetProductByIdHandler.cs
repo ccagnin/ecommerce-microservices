@@ -15,7 +15,7 @@ internal class GetProductByIdQueryHandler(IDocumentSession session, ILogger<GetP
         
         if (product is null)
         {
-            throw new NotFoundException($"Product with ID {query.Id} not found");
+            throw new ProductNotFoundException();
         }
         
         return new GetProductByIdResult(product);
