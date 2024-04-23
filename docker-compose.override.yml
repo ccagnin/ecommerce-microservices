@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   catalogdb:
-    container_name: catalogdb
+    container_name: ecommercemicroservices-catalogdb-1
     image: postgres:latest
     environment:
       - POSTGRES_DB=CatalogDb

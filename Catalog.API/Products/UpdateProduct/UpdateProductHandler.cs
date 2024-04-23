@@ -10,7 +10,7 @@ public record UpdateProductCommand(
 
 public record UpdateProductResult(bool Success);
 
-internal class UpdateProductCommandHandler(IDocumentSession session, Logger<UpdateProductResult> logger)
+internal class UpdateProductCommandHandler(IDocumentSession session, ILogger<UpdateProductResult> logger)
     : ICommandHandler<UpdateProductCommand, UpdateProductResult>
 {
     public async Task<UpdateProductResult> Handle(UpdateProductCommand command, CancellationToken cancellationToken)

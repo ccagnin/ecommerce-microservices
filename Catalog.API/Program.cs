@@ -10,6 +10,7 @@ builder.Services.AddMarten(options =>
     options.Connection(builder.Configuration.GetConnectionString("database")!);
 }).UseLightweightSessions();
 
+
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 app.MapCarter();
