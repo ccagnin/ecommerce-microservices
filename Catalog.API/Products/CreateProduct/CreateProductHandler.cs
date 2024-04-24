@@ -1,5 +1,3 @@
-using FluentValidation;
-
 namespace Catalog.API.Products.CreateProduct;
 
 public record CreateProductCommand(
@@ -23,17 +21,12 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
     }
 }
 
-internal class CreateProductCommandHandler(IDocumentSession session, IValidator<CreateProductCommand> validator)
+internal class CreateProductCommandHandler(IDocumentSession session, ILogger<CreateProductCommandHandler> logger)
     : ICommandHandler<CreateProductCommand, CreateProductResult>
 {
     public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
-        var validationResult = await validator.ValidateAsync(command, cancellationToken);
-        var errors = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
-        if (errors.Any())
-        {
-            throw new ValidationException(errors.FirstOrDefault());
-        }
+        logger.LogInformation("CreateProductCommandHandler.Handle called with {@Command}", command);
         // CREATE PRODUCT
         var product = new Product
         {
