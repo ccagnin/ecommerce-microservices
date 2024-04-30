@@ -8,10 +8,8 @@ public class CatalogInitialData : IInitialData
     {
         using var session = store.LightweightSession();
 
-        if (await session.Query<Product>().AnyAsync())
-        { 
-            return;
-        }
+        session.DeleteWhere<Product>(x => true);
+        await session.SaveChangesAsync();
         
         session.Store<Product>(GetPreconfiguredProducts());
         await session.SaveChangesAsync();
